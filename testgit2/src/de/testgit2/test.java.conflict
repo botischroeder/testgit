@@ -1,0 +1,15 @@
+package de.testgit2;
+
+public class test {
+
+	public static void main( String[] args ) {
+		System.out.println("test5");
+<<<<<<< HEAD
+		System.out.println("test6");
+=======
+		System.out.println("neu");
+>>>>>>> 3727b6e087a6511c21e53c2ab6ffc8e69f662563
+
+	}
+
+}
