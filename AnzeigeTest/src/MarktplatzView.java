@@ -1,3 +1,12 @@
+/**
+ * 
+ */
+
+/**
+ * @author Timo
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +18,7 @@ public class MarktplatzView extends SpielView{
 	
 	
 	//private ArrayList<Map> viewkeys = new ArrayList<>();
-	private Map<String, String> viewkeys = new HashMap<>();
+;
 	//private ArrayList< String> spielAnzeige = new ArrayList<>();
 	
 	
@@ -17,6 +26,7 @@ public class MarktplatzView extends SpielView{
 	
 	
 	private MarktplatzView() {
+//		SubView = this;
 //		viewString = "MARKTPLATZ"
 	}
 	
@@ -39,22 +49,56 @@ public class MarktplatzView extends SpielView{
 	
 	
 	
-	private void setKeys(int viewIndex){
-		viewkeys.clear();
-		viewkeys.putAll( keys );
-		switch(viewIndex)
-		{
-			case 1:
-				viewkeys.put( "K", "KAUFEN");
-				viewkeys.put( "V", "VERKAUFEN" );
-				break;
-				
-			case 2:
-				viewkeys.put( "K", "KORN_KAUFEN" );
-				viewkeys.put( "F", "FELD_KAUFEN" );
-				break;
-				
-		}
+	
+	
+
+	
+//	private void setKeys(int viewIndex){
+//		viewkeys.clear();
+//		viewkeys.putAll( generalKeys );
+//		switch(viewIndex)
+//		{
+//			case 1:
+//				viewkeys.put( "K", "KAUFEN");
+//				viewkeys.put( "V", "VERKAUFEN" );
+//				break;
+//				
+//			case 2:
+//				viewkeys.put( "K", "KORN_KAUFEN" );
+//				viewkeys.put( "F", "FELD_KAUFEN" );
+//				break;
+//				
+//		}
+//		
+//	}
+
+	@Override
+	public void generateKeys() {
+		Map<String, String> keys = new HashMap<>();
+		
+		keys.put( "K", "KAUFEN");
+		keys.put( "V", "VERKAUFEN" );
+		addKeys(keys, 1);
+		keys.clear();
+		
+		keys.put( "K", "KORN_KAUFEN" );
+		keys.put( "F", "FELD_KAUFEN" );
+		addKeys(keys, 2);
+		keys.clear();
+		
+	}
+	
+
+	@Override
+	public void generateScreens() {
+		ArrayList<String> ausgabe = new ArrayList<>();
+		int menuVorlauf = 20;
+		int menuNachlauf = 30;
+		
+		ausgabe.add(generateZeile(20, "║(K)aufen oder (v)erkaufen║"));
+		ausgabe.add(generateMenüpunktabschlusszeile(21, 47));
+		ausgabe.addAll(generateLeerzeilen(ausgabe.size()));
+		ausgabe.add( "Soll gekauft oder verkauft werden?" );
 		
 	}
 	
@@ -91,26 +135,7 @@ public class MarktplatzView extends SpielView{
 		return ausgabe;
 	}
 	
-	@Override
-	public Map<String, String> getKeys(){
-		setKeys( viewIndex );
-		return viewkeys;
-	}
 	
-	@Override
-	public void setViewIndex(int viewIndex){
-		this.viewIndex = viewIndex;
-	}
-	
-	public void setSpieler( Spieler spieler ) {
-		this.spieler = spieler;
-		
-	}
-
-	@Override
-	public Spieler getSpieler() {
-		return spieler;
-	}
 
 	
 

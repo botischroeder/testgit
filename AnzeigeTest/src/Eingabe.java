@@ -51,24 +51,24 @@ public class Eingabe {
 						
 						ausgabe.show( "Marktplatz", 2, spieler );
 						
-						boolean innerStop = false;
-						do {
-							eingabe = getEingabe();
-
-							if ( !stringToInt( eingabe ) || !kaufekorn() ) {
-
-								// falls F-Taste anstatt erwarteter Zahl
-								if ( validKeys.keySet().contains( eingabe ) ) {
-									eingabeAusUntererEbene = validKeys.get( eingabe );
-									innerStop = true;
-								}
-								ausgabe.show( "Marktplatz", 4, spieler );
-							}else{
-								innerStop = true;
-							}
-
-						} while ( !innerStop );
-						ausgabe.show( "Marktplatz", 1, spieler );
+//						boolean innerStop = false;
+//						do {
+//							eingabe = getEingabe();
+//
+//							if ( !stringToInt( eingabe ) || !kaufekorn() ) {
+//
+//								// falls F-Taste anstatt erwarteter Zahl
+//								if ( validKeys.keySet().contains( eingabe ) ) {
+//									eingabeAusUntererEbene = validKeys.get( eingabe );
+//									innerStop = true;
+//								}
+//								ausgabe.show( "Marktplatz", 4, spieler );
+//							}else{
+//								innerStop = true;
+//							}
+//
+//						} while ( !innerStop );
+//						ausgabe.show( "Marktplatz", 1, spieler );
 						break;
 					case "MARKTPLATZ_KAUFEN_ERROR":
 
