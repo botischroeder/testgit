@@ -22,10 +22,13 @@ public class MarktplatzView extends SpielView{
 	//private ArrayList< String> spielAnzeige = new ArrayList<>();
 	
 	
-	private static MarktplatzView marktplatzView;
+//	private static MarktplatzView marktplatzView;
 	
 	
-	private MarktplatzView() {
+	public MarktplatzView(Spiel spiel) {
+		super(spiel);
+		generateKeys();
+		generateScreens();
 //		SubView = this;
 //		viewString = "MARKTPLATZ"
 	}
@@ -40,12 +43,12 @@ public class MarktplatzView extends SpielView{
 //	}
 	
 	
-	public static MarktplatzView getInstance() {
-		if ( marktplatzView == null ) {
-			marktplatzView = new MarktplatzView();
-		}
-		return marktplatzView;
-	}
+//	public static MarktplatzView getInstance() {
+//		if ( marktplatzView == null ) {
+//			marktplatzView = new MarktplatzView();
+//		}
+//		return marktplatzView;
+//	}
 	
 	
 	
@@ -92,48 +95,52 @@ public class MarktplatzView extends SpielView{
 	@Override
 	public void generateScreens() {
 		ArrayList<String> ausgabe = new ArrayList<>();
-		int menuVorlauf = 20;
-		int menuNachlauf = 30;
+//		int menuVorlauf = 20;
+//		int menuNachlauf = 30;
 		
 		ausgabe.add(generateZeile(20, "║(K)aufen oder (v)erkaufen║"));
 		ausgabe.add(generateMenüpunktabschlusszeile(21, 47));
 		ausgabe.addAll(generateLeerzeilen(ausgabe.size()));
 		ausgabe.add( "Soll gekauft oder verkauft werden?" );
+		addScreen( ausgabe, 1 );
+		ausgabe.clear();
+		
+		
 		
 	}
 	
-	@Override
-	public ArrayList<String> getScreen(){
-		ArrayList<String> ausgabe = new ArrayList<>();
-		ausgabe.addAll( createStatusAnzeige(spieler) );
-		switch(viewIndex){
-			
-			case 1:
-				ausgabe.add( "║             (K)aufen oder (v)erkaufen          ║" );
-				ausgabe.add( "║                                                ║" );
-				//usw.
-				ausgabe.add( letzteZeile );
-				ausgabe.add( "Soll gekauft oder verkauft werden?" );
-				break;
-			case 2:
-				ausgabe.add( "║             (K)orn                             ║" );
-				ausgabe.add( "║             (F)eld                             ║" );
-				//usw.
-				ausgabe.add( letzteZeile );
-				ausgabe.add( "Welche Ware soll gehandelt werden?" );
-				break;
-			case 3:
-				ausgabe.add( "║        Wieviel Korn soll gehandelt werden      ║" );
-				
-				//usw.
-				ausgabe.add( letzteZeile );
-				ausgabe.add( "Wieviel Ware soll gehandelt werden?" );
-				break;
-			default:
-							
-		}
-		return ausgabe;
-	}
+//	@Override
+//	public ArrayList<String> getScreen(){
+//		ArrayList<String> ausgabe = new ArrayList<>();
+//		ausgabe.addAll( createStatusAnzeige(spieler) );
+//		switch(viewIndex){
+//			
+//			case 1:
+//				ausgabe.add( "║             (K)aufen oder (v)erkaufen          ║" );
+//				ausgabe.add( "║                                                ║" );
+//				//usw.
+//				ausgabe.add( letzteZeile );
+//				ausgabe.add( "Soll gekauft oder verkauft werden?" );
+//				break;
+//			case 2:
+//				ausgabe.add( "║             (K)orn                             ║" );
+//				ausgabe.add( "║             (F)eld                             ║" );
+//				//usw.
+//				ausgabe.add( letzteZeile );
+//				ausgabe.add( "Welche Ware soll gehandelt werden?" );
+//				break;
+//			case 3:
+//				ausgabe.add( "║        Wieviel Korn soll gehandelt werden      ║" );
+//				
+//				//usw.
+//				ausgabe.add( letzteZeile );
+//				ausgabe.add( "Wieviel Ware soll gehandelt werden?" );
+//				break;
+//			default:
+//							
+//		}
+//		return ausgabe;
+//	}
 	
 	
 

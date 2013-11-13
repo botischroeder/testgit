@@ -18,7 +18,7 @@ public abstract class View {
 	protected Map<String, String> generalKeys = new HashMap<>();
 	protected ArrayList<Map<String, String>> viewkeys = new ArrayList<>();
 	
-	protected ArrayList<String> statusAnzeige = new ArrayList<>();
+	protected ArrayList<String> statusAnzeige = new ArrayList<>(20);
 //	protected ArrayList<String> spielAnzeige = new ArrayList<>();
 	protected ArrayList<ArrayList<String>> anzeigen = new ArrayList<>();
 	
@@ -30,13 +30,9 @@ public abstract class View {
 	public abstract void generateScreens();
 	
 	
-	protected Spieler spieler;
 	
-	public void setSpieler( Spieler spieler ){
-		this.spieler = spieler;
-	}
 	
-	protected void addScreens(ArrayList<String> screen, int index){
+	protected void addScreen(ArrayList<String> screen, int index){
 		ArrayList<String> tempScreen = new ArrayList<>();
 		tempScreen.addAll(screen);
 		anzeigen.add(index, tempScreen);
@@ -66,9 +62,9 @@ public abstract class View {
 	
 	
 	
-	public Spieler getSpieler(){
-		return spieler;
-	}
+//	public Spieler getSpieler(){
+//		return spieler;
+//	}
 	
 	public void setViewIndex(int viewIndex){
 		this.viewIndex = viewIndex;

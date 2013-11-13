@@ -9,18 +9,22 @@ public class Eingabe {
 	private Ausgabe				ausgabe;
 	private String				eingabe;
 	private Map<String, String>	validKeys	= new HashMap<>();
+	private Spiel spiel;
 
 	public Eingabe() {
 		super();
 		spieler = new Spieler( "Herzog", "Andreas" );
 		ausgabe = new Ausgabe();
+		spiel = new Spiel();
 		// ausgabe.getViews().put( "Marktplatz", MarktplatzView.getInstance() );
 
 	}
 
 	public void test() {
-		ausgabe.show( "Marktplatz", 1, spieler );
-		loopRunde();
+		View view = new MarktplatzView(spiel);
+		ausgabe.getViews().put( "MARKTPLATZ", view );
+		ausgabe.show( "MARKTPLATZ", 1, spieler );
+//		loopRunde();
 		// ausgabe.setView( ausgabe.getViews().get( "Marktplatz" ) );
 		// ausgabe.getView().setViewIndex( 1 );
 		// validKeys = ausgabe.show( spieler );

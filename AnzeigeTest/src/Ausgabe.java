@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class Ausgabe {
 
 	private View				currentView;
 	private Map<String, View>	views		= new HashMap<>();
 	private ArrayList<Integer>	viewHistory	= new ArrayList<>();
+	private Spiel spiel;
 
 
 	public Map<String, String> show( String viewString, int viewIndex, Spieler spieler ) {
@@ -42,7 +45,9 @@ public class Ausgabe {
 			
 		}
 
-		view.setSpieler( spieler );
+		if (view instanceof SpielView){
+		((SpielView) view ).setSpieler( spieler );
+		}
 		view.setViewIndex( viewIndex );
 		ArrayList<String> ausgabe = view.getScreen();
 		// Ausgabemethode fehlt noch
@@ -57,9 +62,28 @@ public class Ausgabe {
 		String viewString = currentView.getClass().getName();
 		
 		int viewIndex = viewHistory.get( viewHistory.size() - 2 );
-			
+		Spieler spieler = null;
+		if (currentView instanceof SpielView){
+			spieler = ((SpielView) currentView ).getSpieler();
+			}
 		
-		return show( viewString, viewIndex, currentView.getSpieler() );
+		return show( viewString, viewIndex, spieler );
+	}
+
+	public Map<String, View> getViews() {
+		return views;
+	}
+
+	public void setViews( Map<String, View> _views ) {
+		views = _views;
+	}
+
+	public Spiel getSpiel() {
+		return spiel;
+	}
+
+	public void setSpiel( Spiel _spiel ) {
+		spiel = _spiel;
 	}
 
 	public View currentView() {
