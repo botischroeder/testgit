@@ -17,15 +17,8 @@ public abstract class View {
 	
 	protected Map<String, String> generalKeys = new HashMap<>();
 	protected Map<Integer, Map<String, String>> viewkeys = new HashMap<>();
-//	protected ArrayList<Map<String, String>> viewkeys = new ArrayList<>(20);
-//	protected HashMap<String, String>[] viewkeys = new HashMap<String, String>[];
-	
 	protected ArrayList<String> statusAnzeige = new ArrayList<>();
-//	protected ArrayList<String> spielAnzeige = new ArrayList<>();
 	protected Map<Integer, ArrayList<String>> screens = new HashMap<>();
-	
-//	protected View SubView;
-	
 	protected String ersteZeile = "╔══════════════════════════════════════════════════════════════════════════════╗";
 	protected String letzteZeile = "╚══════════════════════════════════════════════════════════════════════════════╝";
 	
@@ -55,19 +48,20 @@ public abstract class View {
 		viewkeys.put(index, tempKeys);
 	}
 	
+	/**Liefert den Screen für den aktuellen Viewindex zurück
+	 * @return ArrayList mit dem Screen
+	 */
 	public ArrayList<String> getScreen(){
 		ArrayList<String> ausgabe = new ArrayList<>();
 		ausgabe.addAll(statusAnzeige);
-//		letzte Zeile wird wieder entfernt, da sie von der speziellen View erzeugt wird. Sie ist notwendig zur Berechnung dieser Zeile.
-//		ausgabe.remove( ausgabe.size() - 1 );
-//		ArrayList<String> ausgabe2 = new ArrayList<>();
-//		ausgabe2 = anzeigen.get(viewIndex);
 		ausgabe.addAll(screens.get(viewIndex));
-//		ausgabe.addAll( ausgabe2 );
 		return ausgabe;
 	}
 	
 	
+	/**Liefert die gültigen Eingaben für den aktuellen Screen zurück.
+	 * @return Map mit gültigen Eingaben
+	 */
 	public Map<String, String> getKeys(){
 		Map<String, String> returnKeys = new HashMap<>();
 		returnKeys.putAll(generalKeys);
@@ -76,11 +70,6 @@ public abstract class View {
 	}
 	
 	
-	
-	
-//	public Spieler getSpieler(){
-//		return spieler;
-//	}
 	
 	public void setViewIndex(int viewIndex){
 		this.viewIndex = viewIndex;

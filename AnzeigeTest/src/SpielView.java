@@ -11,14 +11,10 @@ import java.util.ArrayList;
 
 public abstract class SpielView extends View {
 
-	// protected ArrayList< String> statusAnzeige = new ArrayList<>();
 	protected Spieler spieler;
 	protected Spiel spiel;
 	protected String menueUnterZeile = "╠═════════════╩══════════╩══════════════╩═════════════╩═════════════╩══════════╣";
 
-//	protected SpielView() {
-//
-//	}
 
 	protected SpielView(Spiel spiel) {
 		super();
@@ -40,7 +36,6 @@ public abstract class SpielView extends View {
 	 *            
 	 */
 	protected void createStatusAnzeige( Spieler spieler ) {
-//		ArrayList<String> statusAnzeige = new ArrayList<>();
 //		statusAnzeige.add( "╔══════════════════════════════════════════════════════════════════════════════╗" );
 		statusAnzeige.add( ersteZeile );
 		statusAnzeige.add( "║" + addUmgebendeLeerzeichen( spieler.getTitel() + " " + spieler.getName() ) + "║" );
@@ -50,21 +45,10 @@ public abstract class SpielView extends View {
 		statusAnzeige.add( "╠═════════════╦══════════╦══════════════╦═════════════╦═════════════╦══════════╣" );
 		statusAnzeige.add( "║Übersicht(F2)║Aktion(F3)║Marktplatz(F4)║Statistik(F5)║Spielmenü(F6)║Chat(F7)  ║" );
 //		statusAnzeige.add( "╠═════════════╩══════════╩══════════════╩═════════════╩═════════════╩══════════╣" );
-		// usw.
+
 	}
 	
-//	/**
-//	 * @param spieler
-//	 *            Der Spieler, für den die Statusanzeige erstellt werden soll
-//	 * @return Die Statusanzeige
-//	 */
-//	protected ArrayList<String> createStatusAnzeige( Spieler spieler ) {
-//		ArrayList<String> statusAnzeige = new ArrayList<>();
-//		statusAnzeige.add( "╔══════════════════════════════════════════════════════════════════════════════╗" );
-//		statusAnzeige.add( "║" + addUmgebendeLeerzeichen( spieler.getTitel() + " " + spieler.getName() ) + "║" );
-//		// usw.
-//		return statusAnzeige;
-//	}
+
 
 	/**
 	 * Erzeugt eine View-Zeile mit beginnendem und abschließendem ║. Der übergebene String wird zwischen ║ als Menüpunkt eingebettet.
@@ -117,7 +101,6 @@ public abstract class SpielView extends View {
 	 * @return Die View-Zeile
 	 */
 	protected String generateMenüpunktbeginnzeile( int beginn, int ende ) {
-//		char[] zeile = statusAnzeige.get( statusAnzeige.size() - 1 ).toCharArray();
 		char[] zeile = menueUnterZeile.toCharArray();
 		if ( beginn != 1 ) {
 			if ( zeile[beginn] == '╩' ) {
@@ -142,7 +125,7 @@ public abstract class SpielView extends View {
 	 * @param anweisung Die Anweisung für die letzte Zeile
 	 * @param beginn Ab welcher Stelle soll das Untermenü beginnen 
 	 * @param ende An welcher Stelle soll das Untermenü enden
-	 * @return
+	 * @return Der fertige Screen
 	 */
 	protected ArrayList<String> createMenuePunktAnsicht(ArrayList<String> menuPunkte, String anweisung, int beginn, int ende){
 		ArrayList<String> ausgabe = new ArrayList<>();
@@ -169,18 +152,5 @@ public abstract class SpielView extends View {
 	}
 
 	
-
-	// @Override
-	// public ArrayList<String> getScreen(){
-	// ArrayList<String> ausgabe = new ArrayList<>();
-	// ausgabe.addAll(createStatusAnzeige(spieler));
-	// return ausgabe;
-	// }
-	//
-	// @Override
-	// public Map<String, String> getKeys(){
-	// setKeys( viewIndex );
-	// return viewkeys;
-	// }
 
 }

@@ -23,7 +23,7 @@ public class Eingabe {
 	public void test() {
 		View view = new MarktplatzView(spiel);
 		ausgabe.getViews().put( "MARKTPLATZ", view );
-		ausgabe.show( "MARKTPLATZ", 1, spieler );
+		System.out.println(ausgabe.show( "MARKTPLATZ", 0, spieler ));
 	}
 
 	private void loopRunde() {
