@@ -24,18 +24,6 @@ public class Eingabe {
 		View view = new MarktplatzView(spiel);
 		ausgabe.getViews().put( "MARKTPLATZ", view );
 		ausgabe.show( "MARKTPLATZ", 1, spieler );
-//		loopRunde();
-		// ausgabe.setView( ausgabe.getViews().get( "Marktplatz" ) );
-		// ausgabe.getView().setViewIndex( 1 );
-		// validKeys = ausgabe.show( spieler );
-		// analyzeEingabe();
-		// for ( String s : ausgabe.showMarktplatz( spieler, 1 ).values() ) {
-		// System.out.println( s );
-		// }
-		// System.out.println();
-		// Map<String, String> map = ausgabe.showMarktplatz( spieler, 2 );
-		// System.out.println( map );
-
 	}
 
 	private void loopRunde() {
@@ -97,7 +85,7 @@ public class Eingabe {
 
 				}
 			} else {
-				System.out.println( "Ungültige Eingabe" );
+				System.out.println( "Ungï¿½ltige Eingabe" );
 				// ausgabe.show( spieler );
 			}
 		} while ( !stop );

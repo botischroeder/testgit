@@ -14,6 +14,7 @@ public abstract class SpielView extends View {
 	// protected ArrayList< String> statusAnzeige = new ArrayList<>();
 	protected Spieler spieler;
 	protected Spiel spiel;
+	protected String menueUnterZeile = "╠═════════════╩══════════╩══════════════╩═════════════╩═════════════╩══════════╣";
 
 //	protected SpielView() {
 //
@@ -39,9 +40,16 @@ public abstract class SpielView extends View {
 	 *            
 	 */
 	protected void createStatusAnzeige( Spieler spieler ) {
-		ArrayList<String> statusAnzeige = new ArrayList<>();
-		statusAnzeige.add( "╔══════════════════════════════════════════════════════════════════════════════╗" );
+//		ArrayList<String> statusAnzeige = new ArrayList<>();
+//		statusAnzeige.add( "╔══════════════════════════════════════════════════════════════════════════════╗" );
+		statusAnzeige.add( ersteZeile );
 		statusAnzeige.add( "║" + addUmgebendeLeerzeichen( spieler.getTitel() + " " + spieler.getName() ) + "║" );
+		statusAnzeige.add( "╠══════════════════════════════════════════════════════════════════════════════╣" );
+		statusAnzeige.add( "║Ländereien: "+addVoranstehendeLeerzeichen( "XXX", 3 ) +"  Felder: "+addVoranstehendeLeerzeichen( "XX", 3 )+"  Mühlen: "+addVoranstehendeLeerzeichen( "XX", 3 )+"  Speicher(Kapazität): "+addVoranstehendeLeerzeichen( "XX", 3 )+ "("+addVoranstehendeLeerzeichen( "XXX", 4 )+")     ║");
+		statusAnzeige.add( "║Einwohner: "+addVoranstehendeLeerzeichen( "XXX", 3 ) +" Soldaten: "+addVoranstehendeLeerzeichen( "XXX", 3 ) +" Korn: "+addVoranstehendeLeerzeichen( "XXX", 3 ) +" Mehl: "+addVoranstehendeLeerzeichen( "XXX", 3 ) +" Dünger: "+addVoranstehendeLeerzeichen( "XXX", 3 ) +" Gold: "+addVoranstehendeLeerzeichen( "XXX", 4 ) +"       ║" );
+		statusAnzeige.add( "╠═════════════╦══════════╦══════════════╦═════════════╦═════════════╦══════════╣" );
+		statusAnzeige.add( "║Übersicht(F2)║Aktion(F3)║Marktplatz(F4)║Statistik(F5)║Spielmenü(F6)║Chat(F7)  ║" );
+//		statusAnzeige.add( "╠═════════════╩══════════╩══════════════╩═════════════╩═════════════╩══════════╣" );
 		// usw.
 	}
 	
@@ -88,7 +96,7 @@ public abstract class SpielView extends View {
 			menueAbschluss = "╠";
 		}
 
-		for ( int i = 0; i < ( ende - beginn ); i++ ) {
+		for ( int i = 0; i < ( ende - 1 - beginn ); i++ ) {
 			menueAbschluss += "═";
 		}
 		if ( ende != 80 ) {
@@ -96,7 +104,7 @@ public abstract class SpielView extends View {
 		} else {
 			menueAbschluss += "╣";
 		}
-		return "║" + addLeerzeichen( beginn - 1 ) + "║" + menueAbschluss + "║" + addLeerzeichen( 76 - ende ) + "║";
+		return "║" + addLeerzeichen( beginn - 1 ) + menueAbschluss  +addLeerzeichen( 78 - ende ) + "║";
 	}
 
 	/**
@@ -109,8 +117,8 @@ public abstract class SpielView extends View {
 	 * @return Die View-Zeile
 	 */
 	protected String generateMenüpunktbeginnzeile( int beginn, int ende ) {
-		char[] zeile = statusAnzeige.get( statusAnzeige.size() - 1 ).toCharArray();
-
+//		char[] zeile = statusAnzeige.get( statusAnzeige.size() - 1 ).toCharArray();
+		char[] zeile = menueUnterZeile.toCharArray();
 		if ( beginn != 1 ) {
 			if ( zeile[beginn] == '╩' ) {
 				zeile[beginn] = '╬';
@@ -126,7 +134,29 @@ public abstract class SpielView extends View {
 				zeile[ende] = '╦';
 			}
 		}
-		return zeile.toString();
+		return new String( zeile );
+	}
+	
+	/**Erstellt einen Screen. Umfasst den gesammten Bereich von der Abschlusszeile des Ansichtmenüs bis zur letzten Zeile (Anweisung/Frage). 
+	 * @param menuPunkte Liste mit den Punkten für das Untermenü
+	 * @param anweisung Die Anweisung für die letzte Zeile
+	 * @param beginn Ab welcher Stelle soll das Untermenü beginnen 
+	 * @param ende An welcher Stelle soll das Untermenü enden
+	 * @return
+	 */
+	protected ArrayList<String> createMenuePunktAnsicht(ArrayList<String> menuPunkte, String anweisung, int beginn, int ende){
+		ArrayList<String> ausgabe = new ArrayList<>();
+		ausgabe.add( generateMenüpunktbeginnzeile( beginn, ende ) );
+		
+		for (String menuPunkt: menuPunkte){
+			ausgabe.add(generateZeile(beginn - 1, menuPunkt));
+		}
+		
+		ausgabe.add(generateMenüpunktabschlusszeile(beginn, ende));
+		ausgabe.addAll(generateLeerzeilen(ausgabe.size()));
+		ausgabe.add( anweisung );
+		
+		return ausgabe;
 	}
 
 	public void setSpieler( Spieler spieler ){

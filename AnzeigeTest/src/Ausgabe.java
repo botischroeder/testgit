@@ -24,15 +24,15 @@ public class Ausgabe {
 	public Map<String, String> show( String viewString, int viewIndex, Spieler spieler ) {
 		View view = views.get( viewString );
 
-		//falls die "übergebene" View ungleich der letzten View ist oder wenn sie gleich ist und zusätzlich der viewIndex 1 übergeben wurde, 
-		//muss die viewHistory gelöscht werden und currentView gesetzt werden
+		//falls die "Ã¼bergebene" View ungleich der letzten View ist oder wenn sie gleich ist und zusatzlich der viewIndex 1 ï¿½bergeben wurde, 
+		//muss die viewHistory gelÃ¶scht werden und currentView gesetzt werden
 		if ( ( view == currentView && viewIndex == 1 ) || ( view != currentView ) ) {
 			this.currentView = view;
 			viewHistory.clear();
 		}
 
-		//Prüfung, ob per ESC die vorherige View aufgerufen werden soll. Dann muss der letzte Eintrag der History entfernt werden,
-		//ansonsten wird der akutelle viewIndex hinzugefügt.
+		//PrÃ¼fung, ob per ESC die vorherige View aufgerufen werden soll. Dann muss der letzte Eintrag der History entfernt werden,
+		//ansonsten wird der akutelle viewIndex hinzugefÃ¼gt.
 		//ggf. Fehlerscreeens nicht mit eintragen
 		try {
 			if ( viewHistory.get( viewHistory.size() - 2 ) == viewIndex ) {
@@ -91,8 +91,8 @@ public class Ausgabe {
 	}
 
 	public int getLastViewIndex() {
-		// den vorherigen Index zurückgeben
-		//try catch für IndexOutOfBounds fehlt noch
+		// den vorherigen Index zurÃ¼ckgeben
+		//try catch fÃ¼r IndexOutOfBounds fehlt noch
 		return viewHistory.get( viewHistory.size() - 2 );
 	}
 

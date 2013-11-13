@@ -16,15 +16,18 @@ public abstract class View {
 	protected int viewIndex;
 	
 	protected Map<String, String> generalKeys = new HashMap<>();
-	protected ArrayList<Map<String, String>> viewkeys = new ArrayList<>();
+	protected Map<Integer, Map<String, String>> viewkeys = new HashMap<>();
+//	protected ArrayList<Map<String, String>> viewkeys = new ArrayList<>(20);
+//	protected HashMap<String, String>[] viewkeys = new HashMap<String, String>[];
 	
-	protected ArrayList<String> statusAnzeige = new ArrayList<>(20);
+	protected ArrayList<String> statusAnzeige = new ArrayList<>();
 //	protected ArrayList<String> spielAnzeige = new ArrayList<>();
-	protected ArrayList<ArrayList<String>> anzeigen = new ArrayList<>();
+	protected Map<Integer, ArrayList<String>> screens = new HashMap<>();
 	
 //	protected View SubView;
 	
-	protected String letzteZeile = ("╚══════════════════════════════════════════════════════════════════════════════╝");
+	protected String ersteZeile = "╔══════════════════════════════════════════════════════════════════════════════╗";
+	protected String letzteZeile = "╚══════════════════════════════════════════════════════════════════════════════╝";
 	
 	public abstract void generateKeys();
 	public abstract void generateScreens();
@@ -32,22 +35,35 @@ public abstract class View {
 	
 	
 	
-	protected void addScreen(ArrayList<String> screen, int index){
+	/**Fügt einen Screen (exkl. Statusanzeige) für den entsprechenden Viewindex der screens-Map hinzu. 
+	 * @param index Der Viewindex
+	 * @param screen Der hinzuzufügende Screen 
+	 */
+	protected void addScreen(int index, ArrayList<String> screen ){
 		ArrayList<String> tempScreen = new ArrayList<>();
 		tempScreen.addAll(screen);
-		anzeigen.add(index, tempScreen);
+		screens.put(index, tempScreen);
 	}
 	
-	protected void addKeys(Map<String, String> keys, int index){
+	/**Fügt eine Map mit den gültigen Keys für den entsprechenden Viewindex der viewkeys-Map hinzu.
+	 * @param index Der Viewindex
+	 * @param keys Die hinzuzufügende Map mit den Keys
+	 */
+	protected void addKeys(int index, Map<String, String> keys ){
 		Map<String, String> tempKeys = new HashMap<>();
 		tempKeys.putAll(keys);
-		viewkeys.add(index, tempKeys);
+		viewkeys.put(index, tempKeys);
 	}
 	
 	public ArrayList<String> getScreen(){
 		ArrayList<String> ausgabe = new ArrayList<>();
 		ausgabe.addAll(statusAnzeige);
-		ausgabe.addAll(anzeigen.get(viewIndex));
+//		letzte Zeile wird wieder entfernt, da sie von der speziellen View erzeugt wird. Sie ist notwendig zur Berechnung dieser Zeile.
+//		ausgabe.remove( ausgabe.size() - 1 );
+//		ArrayList<String> ausgabe2 = new ArrayList<>();
+//		ausgabe2 = anzeigen.get(viewIndex);
+		ausgabe.addAll(screens.get(viewIndex));
+//		ausgabe.addAll( ausgabe2 );
 		return ausgabe;
 	}
 	
@@ -123,7 +139,7 @@ public abstract class View {
 	 */
 	protected ArrayList<String> generateLeerzeilen(int anzahlVorhandenerZeilen){
 		ArrayList<String> leerzeilen = new ArrayList<>();
-		for (int i = 0; i < (25 - anzahlVorhandenerZeilen - 3); i++){
+		for (int i = 0; i < (25 - anzahlVorhandenerZeilen - 10); i++){
 			leerzeilen.add(addLeerzeile());
 		}
 		leerzeilen.add(letzteZeile);

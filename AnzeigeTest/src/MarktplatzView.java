@@ -8,6 +8,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,12 +82,12 @@ public class MarktplatzView extends SpielView{
 		
 		keys.put( "K", "KAUFEN");
 		keys.put( "V", "VERKAUFEN" );
-		addKeys(keys, 1);
+		addKeys(0, keys);
 		keys.clear();
 		
 		keys.put( "K", "KORN_KAUFEN" );
 		keys.put( "F", "FELD_KAUFEN" );
-		addKeys(keys, 2);
+		addKeys(1, keys);
 		keys.clear();
 		
 	}
@@ -94,20 +95,36 @@ public class MarktplatzView extends SpielView{
 
 	@Override
 	public void generateScreens() {
-		ArrayList<String> ausgabe = new ArrayList<>();
+//		ArrayList<String> ausgabe = new ArrayList<>();
 //		int menuVorlauf = 20;
 //		int menuNachlauf = 30;
 		
-		ausgabe.add(generateZeile(20, "║(K)aufen oder (v)erkaufen║"));
-		ausgabe.add(generateMenüpunktabschlusszeile(21, 47));
-		ausgabe.addAll(generateLeerzeilen(ausgabe.size()));
-		ausgabe.add( "Soll gekauft oder verkauft werden?" );
-		addScreen( ausgabe, 1 );
-		ausgabe.clear();
+//		ausgabe.add( generateMenüpunktbeginnzeile( 14, 40 ) );
+//		ausgabe.add(generateZeile(13, "(K)aufen oder (v)erkaufen"));
+//		ausgabe.add(generateMenüpunktabschlusszeile(14, 40));
+//		ausgabe.addAll(generateLeerzeilen(ausgabe.size()));
+//		ausgabe.add( "Soll gekauft oder verkauft werden?" );
+//		addScreen( ausgabe, 0 );
+//		ausgabe.clear();
+		
+//		ArrayList<String> punkte = new ArrayList<String>();
+		
+//		punkte.add( "(K)aufen oder (v)erkaufen" );
+//		punkte.add( "(K)aufen oder (s)aufen   " );
+//		new ArrayList<>(  );
+//		Arrays.asList( "(K)aufen oder (v)erkaufen", "(K)aufen oder (s)aufen   " );
+		addScreen(0, createMenuePunktAnsicht(new ArrayList<>( Arrays.asList( "(K)aufen oder (v)erkaufen", "(K)aufen oder (s)aufen   " ) ), "Soll gekauft oder verkauft werden?", 14, 40) );
+		
+		addScreen(1, createMenuePunktAnsicht(new ArrayList<>( Arrays.asList( "(K)orn      ", "(M)ehl      ", "(D)ünger    ", "(S)oldaten  ", "(L)ändereien" ) ), "Soll gekauft oder verkauft werden?", 14, 27) );
+//		punkte.clear();
+		
+//		ausgabe.clear();
 		
 		
 		
 	}
+	
+	
 	
 //	@Override
 //	public ArrayList<String> getScreen(){
